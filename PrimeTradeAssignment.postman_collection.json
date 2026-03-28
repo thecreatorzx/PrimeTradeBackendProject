@@ -1,0 +1,1266 @@
+{
+  "info": {
+    "_postman_id": "03ff5dae-cfd3-4734-a911-7896b36fac64",
+    "name": "PrimeTradeAssignment",
+    "description": "REST API with JWT authentication via httpOnly cookies,  \n**role-based access control** (user/admin), and full task  \n**CRUD**. Built with Node.js, Express, PostgreSQL and Prisma.\n\nBase URL: [http://localhost:5000/api/v1](http://localhost:5000/api/v1)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "33908256"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "RegisterUser",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"testuser1\",\r\n    \"email\": \"testuser1@test.com\",\r\n    \"password\": \"testuser1\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "register"
+              ]
+            },
+            "description": "_Creates a new user account with name, email and password.  \nPassword is hashed before storing. Returns user details  \nand sets a JWT httpOnly cookie on success._"
+          },
+          "response": [
+            {
+              "name": "New Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"testuser1\",\r\n    \"email\": \"testuser1@test.com\",\r\n    \"password\": \"testuser1\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/v1/auth/register",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzQ3MjUyNDksImV4cCI6MTc3NTMzMDA0OX0.czWrc5xPnCtKU1rpTwyniUzwaFqNzZVebDu7M1y8bhI; Max-Age=604800; Path=/; Expires=Sat, 04 Apr 2026 19:14:09 GMT; HttpOnly; SameSite=Strict"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "130"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"82-gAbzU2gyY3+dEJbwka3ShtsiHls\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 28 Mar 2026 19:14:09 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Registered successfully\",\n    \"data\": {\n        \"id\": 2,\n        \"name\": \"testuser1\",\n        \"email\": \"testuser1@test.com\",\n        \"role\": \"user\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "LoginUser",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n   \"email\": \"john.doe@example.com\",\r\n   \"password\": \"password123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ]
+            },
+            "description": "_Authenticates an existing user with email and password.  \nReturns user details and sets a JWT httpOnly cookie.  \nCookie is automatically sent on all subsequent requests._"
+          },
+          "response": [
+            {
+              "name": "LoginUser",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n   \"email\": \"john.doe@example.com\",\r\n   \"password\": \"password123\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/v1/auth/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzQ3MjU0MzcsImV4cCI6MTc3NTMzMDIzN30.uH3wnHy-pNIiuHokPv0gP3KixOIgmsSBg5bakwg__sU; Max-Age=604800; Path=/; Expires=Sat, 04 Apr 2026 19:17:17 GMT; HttpOnly; SameSite=Strict"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "130"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"82-jkzaVu4OetnkfVPupfeBQArHo8A\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 28 Mar 2026 19:17:17 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Logged in successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john.doe@example.com\",\n        \"role\": \"user\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Logout User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/v1/auth/logout",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "logout"
+              ]
+            },
+            "description": "_Clears the JWT cookie from the client.  \nRequires authentication._"
+          },
+          "response": [
+            {
+              "name": "Logout User",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/v1/auth/logout",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "logout"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; SameSite=Strict"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "52"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"34-RTw5tHxjaaqEcEVbesn1aQCzRls\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 28 Mar 2026 20:20:44 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Logged out successfully\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "me",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/v1/auth/me",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "me"
+              ]
+            },
+            "description": "_Returns the currently authenticated user's details.  \nRequires authentication. Uses the JWT cookie to  \nidentify the user._"
+          },
+          "response": [
+            {
+              "name": "me",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/v1/auth/me",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "me"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "95"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"5f-hxCG+u81QgkLUrItpvZonVWZ1hI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 28 Mar 2026 20:24:29 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john.doe@example.com\",\n        \"role\": \"user\"\n    }\n}"
+            }
+          ]
+        }
+      ],
+      "description": "Handles user registration, login, logout and current  \nuser info. JWT is stored in an httpOnly cookie  \nautomatically on login."
+    },
+    {
+      "name": "Tasks",
+      "item": [
+        {
+          "name": "CreateTask",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"My second task\",\r\n  \"description\": \"Testing task creation again\",\r\n  \"status\": \"pending\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/task/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "task",
+                ""
+              ]
+            },
+            "description": "_Creates a new task for the authenticated user.  \nTitle is required. Description and status are optional.  \nStatus defaults to pending if not provided._"
+          },
+          "response": [
+            {
+              "name": "CreateTask",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"title\": \"My second task\",\r\n  \"description\": \"Testing task creation again\",\r\n  \"status\": \"pending\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/v1/task/",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "task",
+                    ""
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "247"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"f7-97KEQ+vA0DYLTFhVStu5lXSNBUk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 28 Mar 2026 21:15:41 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Task created successfully\",\n    \"data\": {\n        \"id\": 2,\n        \"title\": \"My second task\",\n        \"description\": \"Testing task creation again\",\n        \"status\": \"pending\",\n        \"userId\": 1,\n        \"createdAt\": \"2026-03-28T21:15:41.684Z\",\n        \"updatedAt\": \"2026-03-28T21:15:41.684Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "GetUserTasks",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/v1/task/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "task",
+                ""
+              ]
+            },
+            "description": "_Returns all tasks belonging to the authenticated user.  \nAdmins receive all tasks across all users.  \nRequires authentication._"
+          },
+          "response": [
+            {
+              "name": "GetUserTasks",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/v1/task/",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "task",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "398"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"18e-ihWdhd8iSEKdQoJwjxqlw5F+t/s\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 28 Mar 2026 21:24:16 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"title\": \"My first task\",\n            \"description\": \"Testing task creation\",\n            \"status\": \"pending\",\n            \"userId\": 1,\n            \"createdAt\": \"2026-03-28T21:15:24.596Z\",\n            \"updatedAt\": \"2026-03-28T21:15:24.596Z\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"My updated second task\",\n            \"description\": \"Testing task creation again\",\n            \"status\": \"pending\",\n            \"userId\": 1,\n            \"createdAt\": \"2026-03-28T21:15:41.684Z\",\n            \"updatedAt\": \"2026-03-28T21:23:01.761Z\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "GetTaskByID",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"My second task\",\r\n  \"description\": \"Testing task creation again\",\r\n  \"status\": \"pending\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/task/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "task",
+                "2"
+              ]
+            },
+            "description": "_Returns a single task by ID. Users can only access  \ntheir own tasks. Admins can access any task.  \nRequires authentication._"
+          },
+          "response": [
+            {
+              "name": "GetTaskByID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"title\": \"My second task\",\r\n  \"description\": \"Testing task creation again\",\r\n  \"status\": \"pending\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/v1/task/2",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "task",
+                    "2"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "209"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"d1-1/x4BW1Dn4pzv+d+Nre3JgfslpY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 28 Mar 2026 21:21:43 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 2,\n        \"title\": \"My second task\",\n        \"description\": \"Testing task creation again\",\n        \"status\": \"pending\",\n        \"userId\": 1,\n        \"createdAt\": \"2026-03-28T21:15:41.684Z\",\n        \"updatedAt\": \"2026-03-28T21:15:41.684Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "UpdateTask",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"My updated second task\",\r\n  \"description\": \"Testing task creation again\",\r\n  \"status\": \"pending\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/task/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "task",
+                "2"
+              ]
+            },
+            "description": "_Updates an existing task by ID. All fields are optional —  \nonly provide the fields you want to change. Users can  \nonly update their own tasks. Requires authentication._"
+          },
+          "response": [
+            {
+              "name": "UpdateTask",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"title\": \"My updated second task\",\r\n  \"description\": \"Testing task creation again\",\r\n  \"status\": \"pending\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/v1/task/2",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "task",
+                    "2"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "242"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"f2-VxmBIHOB5R6yN11XKLg2HJUz/6w\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 28 Mar 2026 21:23:01 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Task updated\",\n    \"data\": {\n        \"id\": 2,\n        \"title\": \"My updated second task\",\n        \"description\": \"Testing task creation again\",\n        \"status\": \"pending\",\n        \"userId\": 1,\n        \"createdAt\": \"2026-03-28T21:15:41.684Z\",\n        \"updatedAt\": \"2026-03-28T21:23:01.761Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "DeleteTask",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/v1/task/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "task",
+                "1"
+              ]
+            },
+            "description": "_Deletes a task by ID. Users can only delete their  \nown tasks. Admins can delete any task.  \nRequires authentication._"
+          },
+          "response": [
+            {
+              "name": "DeleteTask",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/v1/task/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "task",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "41"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"29-ErUvUp5sWewsT+NkxYybQvcwLLQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 28 Mar 2026 21:24:46 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Task deleted\"\n}"
+            }
+          ]
+        }
+      ],
+      "description": "Full CRUD on tasks. Users can only access their own  \ntasks. JWT cookie required for all routes."
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "GetAllTasks",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/v1/admin/tasks",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "tasks"
+              ]
+            },
+            "description": "_Returns all tasks and totalCount across all users in the system regardless of ownership._\n\n_Admin access only._"
+          },
+          "response": [
+            {
+              "name": "GetAllTasks",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/v1/admin/tasks",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "tasks"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "831"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"33f-LyEAIgT0ZXhGZiapk/BLDpN53TQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 28 Mar 2026 22:27:38 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 4,\n            \"title\": \"My second task for test user\",\n            \"description\": \"Testing task creation again\",\n            \"status\": \"pending\",\n            \"userId\": 2,\n            \"createdAt\": \"2026-03-28T21:53:09.803Z\",\n            \"updatedAt\": \"2026-03-28T21:54:10.057Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"testuser1\",\n                \"email\": \"testuser1@test.com\"\n            }\n        },\n        {\n            \"id\": 3,\n            \"title\": \"My first task for test user\",\n            \"description\": \"This is a test task for the test user\",\n            \"status\": \"pending\",\n            \"userId\": 2,\n            \"createdAt\": \"2026-03-28T21:52:04.198Z\",\n            \"updatedAt\": \"2026-03-28T21:53:40.637Z\",\n            \"user\": {\n                \"id\": 2,\n                \"name\": \"testuser1\",\n                \"email\": \"testuser1@test.com\"\n            }\n        },\n        {\n            \"id\": 2,\n            \"title\": \"My updated second task\",\n            \"description\": \"Testing task creation again\",\n            \"status\": \"pending\",\n            \"userId\": 1,\n            \"createdAt\": \"2026-03-28T21:15:41.684Z\",\n            \"updatedAt\": \"2026-03-28T21:23:01.761Z\",\n            \"user\": {\n                \"id\": 1,\n                \"name\": \"John Doe\",\n                \"email\": \"john.doe@example.com\"\n            }\n        }\n    ],\n    \"count\": 3\n}"
+            }
+          ]
+        },
+        {
+          "name": "GetAllUsers",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/v1/admin/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "users"
+              ]
+            },
+            "description": "_Returns a list of all registered users in the system and their totalCount.  \nAdmin access only._"
+          },
+          "response": [
+            {
+              "name": "GetAllUsers",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/v1/admin/users",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "users"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "364"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"16c-zxiwhV34SlFHmqVjfWCjuL5Xme0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 28 Mar 2026 22:31:59 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"John Doe\",\n            \"email\": \"john.doe@example.com\",\n            \"role\": \"user\",\n            \"createdAt\": \"2026-03-28T19:11:15.215Z\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"testuser1\",\n            \"email\": \"testuser1@test.com\",\n            \"role\": \"user\",\n            \"createdAt\": \"2026-03-28T19:14:09.952Z\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Admin1\",\n            \"email\": \"admin1@example.com\",\n            \"role\": \"admin\",\n            \"createdAt\": \"2026-03-28T21:55:51.054Z\"\n        }\n    ],\n    \"total\": 3\n}"
+            }
+          ]
+        }
+      ],
+      "description": "Admin only routes. Requires role=admin. Returns  \ndata across all users — not filtered by ownership."
+    },
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "_Verifies the API server is up and running.  \nNo authentication required._"
+          },
+          "response": [
+            {
+              "name": "Health Check",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:5173"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "28"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1c-0Y4Ez9mUrgegww+RKJZgbzzx7wk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 28 Mar 2026 17:35:44 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"API is running\"\n}"
+            }
+          ]
+        }
+      ],
+      "description": "This endpoint is to confirm if the server is live or not."
+    }
+  ]
+}
