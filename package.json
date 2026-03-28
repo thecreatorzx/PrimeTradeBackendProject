@@ -2,8 +2,8 @@
   "name": "my-fullstack-app",
   "version": "1.0.0",
   "scripts": {
-    "server": "npm start --prefix server",
-    "client": "npm start --prefix client",
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "devDependencies": {
