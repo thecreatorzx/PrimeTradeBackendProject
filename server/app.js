@@ -20,7 +20,7 @@ app.use(
 
 // routes
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/task", taskRouter);
+app.use("/api/v1/tasks", taskRouter);
 app.use("/api/v1/admin", adminRouter);
 
 app.get("/", (req, res) => {

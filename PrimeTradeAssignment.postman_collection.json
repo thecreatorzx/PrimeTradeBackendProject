@@ -450,7 +450,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:5000/api/v1/task/",
+              "raw": "http://localhost:5000/api/v1/tasks/",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -459,7 +459,7 @@
               "path": [
                 "api",
                 "v1",
-                "task",
+                "tasks",
                 ""
               ]
             },
@@ -481,7 +481,7 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:5000/api/v1/task/",
+                  "raw": "http://localhost:5000/api/v1/tasks/",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -490,7 +490,7 @@
                   "path": [
                     "api",
                     "v1",
-                    "task",
+                    "tasks",
                     ""
                   ]
                 }
@@ -554,7 +554,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:5000/api/v1/task/",
+              "raw": "http://localhost:5000/api/v1/tasks/",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -563,7 +563,7 @@
               "path": [
                 "api",
                 "v1",
-                "task",
+                "tasks",
                 ""
               ]
             },
@@ -576,7 +576,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5000/api/v1/task/",
+                  "raw": "http://localhost:5000/api/v1/tasks/",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -585,7 +585,7 @@
                   "path": [
                     "api",
                     "v1",
-                    "task",
+                    "tasks",
                     ""
                   ]
                 }
@@ -667,7 +667,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:5000/api/v1/task/2",
+              "raw": "http://localhost:5000/api/v1/tasks/2",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -676,7 +676,7 @@
               "path": [
                 "api",
                 "v1",
-                "task",
+                "tasks",
                 "2"
               ]
             },
@@ -704,7 +704,7 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:5000/api/v1/task/2",
+                  "raw": "http://localhost:5000/api/v1/tasks/2",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -713,7 +713,7 @@
                   "path": [
                     "api",
                     "v1",
-                    "task",
+                    "tasks",
                     "2"
                   ]
                 }
@@ -792,7 +792,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:5000/api/v1/task/2",
+              "raw": "http://localhost:5000/api/v1/tasks/2",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -801,7 +801,7 @@
               "path": [
                 "api",
                 "v1",
-                "task",
+                "tasks",
                 "2"
               ]
             },
@@ -823,7 +823,7 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:5000/api/v1/task/2",
+                  "raw": "http://localhost:5000/api/v1/tasks/2",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -832,7 +832,7 @@
                   "path": [
                     "api",
                     "v1",
-                    "task",
+                    "tasks",
                     "2"
                   ]
                 }
@@ -896,7 +896,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:5000/api/v1/task/1",
+              "raw": "http://localhost:5000/api/v1/tasks/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -905,7 +905,7 @@
               "path": [
                 "api",
                 "v1",
-                "task",
+                "tasks",
                 "1"
               ]
             },
@@ -918,7 +918,7 @@
                 "method": "DELETE",
                 "header": [],
                 "url": {
-                  "raw": "http://localhost:5000/api/v1/task/1",
+                  "raw": "http://localhost:5000/api/v1/tasks/1",
                   "protocol": "http",
                   "host": [
                     "localhost"
@@ -927,7 +927,7 @@
                   "path": [
                     "api",
                     "v1",
-                    "task",
+                    "tasks",
                     "1"
                   ]
                 }

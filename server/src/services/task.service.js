@@ -8,11 +8,7 @@ export const createTask = async (title, description, status, userId) => {
 };
 
 export const getAllTasks = async (userId, role) => {
-  if (role === "admin") {
-    return await prisma.task.findMany();
-  } else {
-    return await prisma.task.findMany({ where: { userId } });
-  }
+  return await prisma.task.findMany({ where: { userId } });
 };
 
 export const getTaskById = async (id, userId, role) => {
